@@ -5,23 +5,37 @@ math.randomseed(os.clock())
 local function sigmoid(x)
     return 1 / (1 + math.exp(-x))
 end
+
 local function sigmoid_derivative(x)
     local sig = sigmoid(x)
     return sig * (1 - sig)
 end
+
 local function relu(x)
     return math.max(0, x)
 end
+
 local function relu_derivative(x)
     return x > 0 and 1 or 0
 end
+
 local function tanh(x)
     return math.tanh(x)
 end
+
 local function tanh_derivative(x)
     local tanh_value = tanh(x)
     return 1 - tanh_value * tanh_value
 end
+
+function linear(x)
+    return x
+end
+
+function linear_derivative(x)
+    return 1
+end
+
 local function xavier_init(dim1, dim2)
     local bound = math.sqrt(6 / (dim1 + dim2))
     local matrix = {}
@@ -33,6 +47,7 @@ local function xavier_init(dim1, dim2)
     end
     return matrix
 end
+
 local function he_init(dim1, dim2)
     local bound = math.sqrt(2 / dim1)
     local matrix = {}
@@ -50,7 +65,11 @@ local activation_mapping = {
     relu = {relu, relu_derivative},
     tanh = {tanh, tanh_derivative}
 }
-local weight_init_mapping = {xavier = xavier_init, he = he_init}
+
+local weight_init_mapping = {
+    xavier = xavier_init, 
+    he = he_init
+}
 
 local MLP = {}
 MLP.__index = MLP
