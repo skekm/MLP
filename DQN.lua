@@ -96,3 +96,5 @@ function DQNAgent:replay(batch_size)
 		self.epsilon = self.epsilon * self.epsilon_decay
 	end
 end
+
+return DQN
