@@ -97,4 +97,4 @@ function DQNAgent:replay(batch_size)
 	end
 end
 
-return DQN
+return DQNAgent
