@@ -10,8 +10,8 @@ function DQN.new(state_size, action_size, learning_rate, gamma, epsilon, epsilon
 	self.epsilon = epsilon or 0.1
 	self.epsilon_min = 0.01
 	self.epsilon_decay = epsilon_decay or 0.995
-	self.q_network = MLP.new(state_size, mlp_params.layer_sizes or {64, 64}, mlp_params.activation_function_names or {"relu", "linear"}, mlp_params.learning_rate, mlp_params.momentum, mlp_params.weight_decay, mlp_params.weight_init)
-	self.target_network = MLP.new(state_size, mlp_params.layer_sizes or {64, 64}, mlp_params.activation_function_names or {"relu", "linear"}, mlp_params.learning_rate, mlp_params.momentum, mlp_params.weight_decay, mlp_params.weight_init)
+	self.q_network = MLP.new(state_size, mlp_params.layer_sizes, mlp_params.activation_function_names, mlp_params.learning_rate, mlp_params.momentum, mlp_params.weight_decay, mlp_params.weight_init)
+	self.target_network = MLP.new(state_size, mlp_params.layer_sizes, mlp_params.activation_function_names, mlp_params.learning_rate, mlp_params.momentum, mlp_params.weight_decay, mlp_params.weight_init)
 	self.memory = {}
 	self.memory_size = memory_size or 5000
 	self.batch_size = 64
